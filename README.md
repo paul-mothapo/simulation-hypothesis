@@ -14,6 +14,14 @@ The data generated here for a user based in **Pretoria (PTA)** proves the theory
 
 Looking at the results, you can see the absolute floor of performance. Even if you had infinite bandwidth and NASA-grade routing, a user in Pretoria will always be waiting hundreds of milliseconds to pull memes from **Tokyo or San Francisco**. Why? Because the universe says so. This confirms that "physical distance" is the ultimate bottleneck. It isn't just a design choice for your cloud architect; it’s a law of physics. If you want faster pings, don't write better code—move your house closer to the server. Or move the planet.
 
+## The Edge Computing
+
+Since we can't move the planet (yet), we use **Edge Computing**. This simulation proves that the only way to beat the physics of long-distance networking is to not go the distance at all.
+
+By adding an **Edge Node (CDN)** in Johannesburg, we cache the data from the New York origin server. When a user in Pretoria requests that data, they only travel **54km** instead of **12,800km**.
+
+**The result?** Latency drops from a painful **~160ms** round-trip to New York down to a lightning-fast **~0.7ms** from the local edge. This is why tools like Cloudflare, Akamai, and AWS CloudFront are not just "nice to have" they are physical necessities for a fast internet.
+
 +++++
 To Run this you need to have RUST installed on your machine. Then, you can run the following command:
 

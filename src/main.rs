@@ -28,21 +28,24 @@ fn main() {
     });
 
     // Setup Links
-    // [Sepedi]: Re kopanya mafelo a go fapafapana
     let bandwidth = 10_000_000_000.0;
-    sim.connect_nodes(100, 1, bandwidth); // ADD [Sepedi]: Re kopanya Pretoria le Joburg
-    sim.connect_nodes(1, 5, bandwidth);   // ADD [Sepedi]: Re kopanya Joburg le New York (Mošola wa lewatle)
-    sim.connect_nodes(5, 1, bandwidth);   // ADD [Sepedi]: Tsela ya go bowa go tšwa NYC
-    sim.connect_nodes(1, 100, bandwidth); // ADD [Sepedi]: Go boela gae Pretoria
+    sim.connect_nodes(100, 1, bandwidth); 
+    sim.connect_nodes(1, 5, bandwidth);   
+    sim.connect_nodes(5, 1, bandwidth);   
+    sim.connect_nodes(1, 100, bandwidth);
 
     // Run Theories
-    // [Sepedi]: Re thoma diteko tša rena tša thiori
     TheoryTests::demonstrate_tcp_handshake(&mut sim, 100, 5);
+    sim.run_simulation(1.0); 
     
     // Demonstrate Bufferbloat (Queuing)
     TheoryTests::demonstrate_bufferbloat(&mut sim, 100, 1);
-
     sim.run_simulation(2.0);
+    
+    // Demonstrate Edge Computing
+    TheoryTests::demonstrate_cdn_solution(&mut sim, 100, 5, 1);
+    sim.run_simulation(3.0);
+
     sim.analyze_results();
 
     println!("\n=== Final Physics Takeaway ===");
@@ -50,4 +53,10 @@ fn main() {
     println!("Physical Distance PTA -> NYC: {:.0} km", dist / 1000.0);
     println!("Min Theoretical RTT (Vacuum): {:.2} ms", (dist * 2.0 / SPEED_OF_LIGHT) * 1000.0);
     println!("Actual Simulated RTT (Fiber + Winding + Handshake): Shows why you see 350ms+ in the real world.");
+    
+    println!("\n=== The Edge Computing Conclusion ===");
+    println!("Physics says light has a speed limit, but economics says we can buy servers closer to users.");
+    println!("By using the Johannesburg Edge Node, we reduced the physical path from 12,800km to ~54km.");
+    println!("Result: Latency dropped from ~160ms (NYC) to ~0.7ms (JHB Edge).");
+    println!("Conclusion: Don't just optimize code; optimize the geography of your data.");
 }

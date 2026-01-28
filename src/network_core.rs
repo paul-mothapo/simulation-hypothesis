@@ -47,6 +47,8 @@ pub enum PacketType {
     TcpSyn,
     TcpSynAck,
     TcpAck,
+    CdnRequest,
+    CdnResponse,
 }
 
 #[derive(Debug, Clone)]
@@ -255,6 +257,11 @@ impl NetworkSimulation {
                             }
                             PacketType::TcpSynAck => {
                                 self.send_packet_ex(node_id, event.packet.source_id, 64, PacketType::TcpAck);
+                            }
+                            PacketType::CdnRequest => {
+                                // [Sepedi]: Ge resepi entle ya CDN e fihla, re araba kapee-pee
+                                // CDN server responds immediately with the cached data (1KB for demo)
+                                self.send_packet_ex(node_id, event.packet.source_id, 1024, PacketType::CdnResponse);
                             }
                             _ => {}
                         }
