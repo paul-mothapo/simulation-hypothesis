@@ -22,6 +22,25 @@ By adding an **Edge Node (CDN)** in Johannesburg, we cache the data from the New
 
 **The result?** Latency drops from a painful **~160ms** round-trip to New York down to a lightning-fast **~0.7ms** from the local edge. This is why tools like Cloudflare, Akamai, and AWS CloudFront are not just "nice to have" they are physical necessities for a fast internet.
 
+## Earth ↔ Moon Cloud (Dysporium)
+
+If we put a data center on the Moon, we are *not* escaping physics, we are moving our compute to a place where physics has new rules. The speed of light still applies, and Earth ↔ Moon is far enough that even perfect vacuum links take **seconds**.
+
+### Reality Check (Physics Bound)
+- The Moon's distance varies from **perigee** to **apogee**, so latency varies with the orbit.
+- Even with perfect free-space propagation, Earth ↔ Moon one-way light time is roughly **1.18 to 1.33 seconds**, and round-trip time is **~2.36 to 2.66 seconds**.
+- Translation: "very low latency" can only mean low *interactive* delay by avoiding round-trips, not beating light-speed.
+
+### The Mitigation Approach (What Actually Helps)
+- **Dysporium Lunar Center** (Moon-side compute): run storage, caching, compression, aggregation, and AI processing locally so only results travel back to Earth.
+- **Dysporium Lunar Communicator** (relay network): use a lunar relay to keep line-of-sight coverage even when the Moon's far side faces away from Earth. This is aligned with real-world relay programs such as NASA's LCRNS and the LunaNet framework, and ESA's Moonlight/Lunar Pathfinder communications relay.
+- **Delay-Tolerant Networking (DTN)**: use protocols built for long RTTs and intermittent connectivity (Bundle Protocol v7 + LTP). This avoids the cost of repeated handshakes and lets the network store-and-forward reliably.
+- **Reduce handshake round-trips** on IP links when possible (e.g., QUIC 0-RTT or TCP Fast Open).
+- **Batch, prefetch, and schedule**: move bulk data in planned windows; avoid chatty request/response patterns.
+
+### Bottom Line
+The only way to make Earth ↔ Moon feel "fast" is to **minimize interactive trips** and **push work to the Moon**. Physics sets the floor; architecture is how you live with it.
+
 +++++
 To Run this you need to have RUST installed on your machine. Then, you can run the following command:
 

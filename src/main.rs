@@ -1,5 +1,6 @@
 mod network_core;
 mod theories;
+mod moon_scenario;
 
 use network_core::{NetworkSimulation, Server, Client, GeoLocation, SPEED_OF_LIGHT};
 use theories::TheoryTests;
@@ -59,4 +60,6 @@ fn main() {
     println!("By using the Johannesburg Edge Node, we reduced the physical path from 12,800km to ~54km.");
     println!("Result: Latency dropped from ~160ms (NYC) to ~0.7ms (JHB Edge).");
     println!("Conclusion: Don't just optimize code; optimize the geography of your data.");
+
+    moon_scenario::print_earth_moon_scenario();
 }
