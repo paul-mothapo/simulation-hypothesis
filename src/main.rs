@@ -1,6 +1,7 @@
 mod network_core;
 mod theories;
 mod moon_scenario;
+mod earth_moon_extensions;
 
 use network_core::{NetworkSimulation, Server, Client, GeoLocation, SPEED_OF_LIGHT};
 use theories::TheoryTests;
@@ -62,4 +63,5 @@ fn main() {
     println!("Conclusion: Don't just optimize code; optimize the geography of your data.");
 
     moon_scenario::print_earth_moon_scenario();
+    earth_moon_extensions::print_top_three_extensions();
 }

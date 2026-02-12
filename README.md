@@ -38,6 +38,34 @@ If we put a data center on the Moon, we are *not* escaping physics, we are movin
 - **Reduce handshake round-trips** on IP links when possible (e.g., QUIC 0-RTT or TCP Fast Open).
 - **Batch, prefetch, and schedule**: move bulk data in planned windows; avoid chatty request/response patterns.
 
+### Extended Theory (Now Simulated In Code)
+The project now extends the Earth ↔ Moon scenario with 3 extra models:
+
+1. **Orbital Dynamics Over Time**
+- Instead of fixed min/avg/max values only, the simulation sweeps a lunar month and prints how latency changes as the Moon moves from perigee to apogee.
+- This shows the RTT swing over time, not just one static number.
+
+2. **Line-of-Sight Outages + Relay Tradeoff**
+- The simulation models a lunar site near the far-side limb and checks visibility over time.
+- It compares:
+  - **Direct Earth link**: lower one-way delay but partial coverage.
+  - **Relay-assisted link**: higher uptime, with extra path delay.
+- This captures the real engineering tradeoff: availability vs pure latency.
+
+3. **Protocol Startup Comparison**
+- The simulation compares startup delay to first response byte for:
+  - TCP + TLS 1.2
+  - TCP + TLS 1.3
+  - QUIC 1-RTT
+  - QUIC 0-RTT
+  - DTN/LTP scheduled-delivery behavior
+- This demonstrates why round-trip reduction matters more than raw bandwidth on deep-space links.
+
+These outputs are printed under:
+- `Extension 1: Orbital Dynamics Over Time`
+- `Extension 2: Line-of-Sight Outages and Relay Impact`
+- `Extension 3: Protocol Startup Comparison`
+
 ### Bottom Line
 The only way to make Earth ↔ Moon feel "fast" is to **minimize interactive trips** and **push work to the Moon**. Physics sets the floor; architecture is how you live with it.
 
